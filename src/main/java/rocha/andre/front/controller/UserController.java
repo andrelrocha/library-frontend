@@ -20,7 +20,7 @@ public class UserController {
         return "userid";
     }
 
-    @GetMapping("/listall")
+    @GetMapping("/listausuarios")
     public String listAll() {
         return "listall";
     }
