@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Usuário Logado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <h1>TESTE</h1>
+    <!--  
+    <h1 class="text-center">Suas informações</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <tbody id="user-info">
+                        <tr>
+                            <th>ID:</th>
+                            <td id="userId"></td>
+                        </tr>
+                        <tr>
+                            <th>Login:</th>
+                            <td id="userLogin"></td>
+                        </tr>
+                        <tr>
+                            <th>Matrícula:</th>
+                            <td id="userMatricula"></td>
+                        </tr>
+                        <tr>
+                            <th>Tipo:</th>
+                            <td id="userTipo"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const token = localStorage.getItem('token');
+
+            // Obtém o token JWT armazenado no localStorage
+            fetch(`http://localhost:8080/users/${token}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${data.token}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição');
+                }
+                return response.json();
+            })
+            .then(userData => {
+                console.log('Dados do usuário:', userData);
+                
+                document.getElementById('userId').innerText = userData.id;
+                document.getElementById('userLogin').innerText = userData.login;
+                document.getElementById('userMatricula').innerText = userData.matricula;
+                document.getElementById('userTipo').innerText = userData.tipo;
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+        });
+    </script>
+    -->
+</body>
+</html>
