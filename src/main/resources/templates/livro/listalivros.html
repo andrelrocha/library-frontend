@@ -46,6 +46,10 @@
                 window.location.href = 'http://localhost:1313/login';
             });
 
+            function salvarId(id) {
+                document.cookie = `livro_id=${id}; path=/`;
+            }
+
             fetch('http://localhost:8080/livros', {
                 method: 'GET',
                 headers: {
@@ -83,6 +87,16 @@
                     const quantidadeCell = document.createElement('td');
                     quantidadeCell.innerText = livroData.quantidadeEstoque;
                     row.appendChild(quantidadeCell);
+
+                    const acaoCell = document.createElement('td');
+                    const button = document.createElement('button');
+                    button.innerText = 'Salvar ID';
+                    button.classList.add('btn', 'btn-info', 'btn-sm');
+                    button.addEventListener('click', function() {
+                        salvarId(livroData.id);
+                    });
+                    acaoCell.appendChild(button);
+                    row.appendChild(acaoCell);
                     
                     tableBody.appendChild(row);
                 }
