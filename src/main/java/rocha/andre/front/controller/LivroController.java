@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LivroController {
     @GetMapping("/livros")
-    public String create() {
+    public String listar() {
         return "livro/listalivros";
+    }
+
+    @GetMapping("/livros/criar")
+    public String create() {
+        return "livro/create";
     }
 
 }
