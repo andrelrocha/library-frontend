@@ -7,21 +7,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserController {
     @GetMapping("/users/create")
     public String create() {
-        return "create";
+        return "user/create";
     }
 
     @GetMapping("/login")
     public String bootstrap() {
-        return "login";
+        return "user/login";
     }
 
     @GetMapping("/userid")
     public String userById() {
-        return "userid";
+        return "user/userid";
     }
 
     @GetMapping("/listausuarios")
     public String listAll() {
-        return "listall";
+        return "user/listall";
+    }
+
+    @GetMapping("/signup")
+    public String signup() {
+        return "user/create";
     }
 }
