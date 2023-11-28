@@ -31,6 +31,12 @@
                             <th>Tipo:</th>
                             <td id="userTipo"></td>
                         </tr>
+                        <tr>
+                            <th>Atualizar informações:</th>
+                            <td>
+                                <a href="http://localhost:1313/users/update" class="btn btn-primary">Atualizar</a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -60,15 +66,13 @@
                 return response.json();
             })
             .then(userData => {
-                console.log('Dados do usuário:', userData);
-                
                 document.getElementById('userId').innerText = userData.id;
                 document.getElementById('userLogin').innerText = userData.login;
                 document.getElementById('userMatricula').innerText = userData.matricula;
                 document.getElementById('userTipo').innerText = userData.tipo;
 
                 document.getElementById('redirectButton').addEventListener('click', function() {
-                    window.location.href = 'http://localhost:1313/listausuarios';
+                    window.location.href = 'http://localhost:1313/users/listausuarios';
                 });
             })
             .catch(error => {

@@ -39,21 +39,26 @@
           'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
-  })
+    })
     .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro na requisição');
-        }
-        return response.json();
+      if (!response.ok) {
+          if (response.status === 403) {
+              return response.text().then(errorMessage => {
+                alert(errorMessage || 'Acesso proibido')
+                document.getElementById('loginForm').reset();
+                throw new Error(errorMessage || 'Acesso proibido');
+              });
+          } else {
+              throw new Error('Erro na requisição');
+          }
+      }
+      return response.json();
     })
     .then(data => {
-        console.log('Token recebido:', data);
         localStorage.setItem('token', data.token); 
     })
     .then(userData => {
-        console.log('Dados do usuário:', userData);
-        
-        window.location.href = `http://localhost:1313/userid`;
+        window.location.href = `http://localhost:1313/users/userid`;
     })
     })
     .catch(error => {

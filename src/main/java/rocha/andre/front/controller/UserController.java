@@ -10,23 +10,33 @@ public class UserController {
         return "user/create";
     }
 
-    @GetMapping("/login")
-    public String bootstrap() {
-        return "user/login";
-    }
-
-    @GetMapping("/userid")
+    @GetMapping("/users/userid")
     public String userById() {
         return "user/userid";
     }
 
-    @GetMapping("/listausuarios")
+    @GetMapping("/users/listausuarios")
     public String listAll() {
         return "user/listall";
+    }
+
+    @GetMapping("/users/update")
+    public String updateUser() {
+        return "user/update";
     }
 
     @GetMapping("/signup")
     public String signup() {
         return "user/create";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "user/login";
+    }
+
+    @GetMapping("/")
+    public String homepage() {
+        return "user/login";
     }
 }
