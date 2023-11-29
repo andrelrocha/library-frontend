@@ -20,5 +20,10 @@ public class LivroController {
         return "livro/create";
     }
 
+    @GetMapping("/livros/update")
+    public String updateLivro() {
+        return "livro/update";
+    }
+
 }
 
