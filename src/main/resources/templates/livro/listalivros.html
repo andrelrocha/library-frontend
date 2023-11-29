@@ -23,13 +23,14 @@
                             <th>Autor</th>
                             <th>Assunto</th>
                             <th>Qtd Estoque</th>
+                            <th>Acessar</th>
                         </tr>
                     </thead>
                     <tbody id="livros-list">
                         <!-- adiciona as linhas da tabela -->
                     </tbody>
                 </table>
-                <a href="http://localhost:1313/livros/criar" class="btn btn-warning btn-lg mt-3">Criar um livro</a>
+                <a href="http://localhost:1313/livros/criar" class="btn btn-primary btn-lg mt-3">Criar um livro</a>
             </div>
         </div>
     </div>
@@ -46,10 +47,9 @@
                 window.location.href = 'http://localhost:1313/login';
             });
 
-            function salvarId(id) {
-                console.log(id);
-                //NAO PRECISA DO COOKIE, SÓ PRECISA CHAMAR A ROTA PASSANDO O ID
+            function abrirPaginaPorId(id) {
                 document.cookie = `livro_id=${id}; path=/`;
+                window.location.href = 'http://localhost:1313/livros/livroporid';
             }
 
             fetch('http://localhost:8080/livros', {
@@ -92,15 +92,12 @@
 
                     const acaoCell = document.createElement('td');
                     const button = document.createElement('button');
-                    button.classList.add('btn', 'btn-warning', 'btn-sm');
-                    
-                    const icon = document.createElement('i');
-                    icon.classList.add('bi', 'bi-pencil', 'fs-5');
-                    icon.setAttribute('aria-hidden', 'true');
-                    button.appendChild(icon);
+                    button.classList.add('btn', 'btn-warning', 'btn-lg', 'p-0', 'rounded');
+                    button.style.width = '30px';
+                    button.style.height = '30px';
 
                     button.addEventListener('click', function() {
-                        salvarId(livroData.id);
+                        abrirPaginaPorId(livroData.id);
                     });
                     acaoCell.appendChild(button);
                     row.appendChild(acaoCell);

@@ -52,7 +52,13 @@
             })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Erro na requisição');
+                    if (response.status === 401 || response.status === 403) {
+                        alert('Você não tem autorização. Retornando para a página anterior.');
+                        window.history.back();
+                        return;
+                    }
+                    alert('Erro na requisição');
+                    return;
                 }
                 return response.json();
             })
