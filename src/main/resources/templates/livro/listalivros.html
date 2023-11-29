@@ -47,6 +47,8 @@
             });
 
             function salvarId(id) {
+                console.log(id);
+                //NAO PRECISA DO COOKIE, SÓ PRECISA CHAMAR A ROTA PASSANDO O ID
                 document.cookie = `livro_id=${id}; path=/`;
             }
 
@@ -90,8 +92,13 @@
 
                     const acaoCell = document.createElement('td');
                     const button = document.createElement('button');
-                    button.innerText = 'Salvar ID';
-                    button.classList.add('btn', 'btn-info', 'btn-sm');
+                    button.classList.add('btn', 'btn-warning', 'btn-sm');
+                    
+                    const icon = document.createElement('i');
+                    icon.classList.add('bi', 'bi-pencil', 'fs-5');
+                    icon.setAttribute('aria-hidden', 'true');
+                    button.appendChild(icon);
+
                     button.addEventListener('click', function() {
                         salvarId(livroData.id);
                     });

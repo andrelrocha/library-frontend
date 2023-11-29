@@ -10,6 +10,11 @@ public class LivroController {
         return "livro/listalivros";
     }
 
+    @GetMapping("/livros/livroporid")
+    public String listarPorId() {
+        return "livro/livro";
+    }
+
     @GetMapping("/livros/criar")
     public String create() {
         return "livro/create";
