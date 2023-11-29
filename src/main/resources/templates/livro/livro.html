@@ -43,6 +43,12 @@
                                 <a href="http://localhost:1313/livros/update" class="btn btn-primary">Atualizar</a>
                             </td>
                         </tr>
+                        <tr>
+                            <th>Apagar livro:</th>
+                            <td>
+                                <button id="deleteButton" class="btn btn-danger">Excluir</button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -55,6 +61,8 @@
             const token = localStorage.getItem('token');
 
             const logoutButton = document.getElementById('logoutButton');
+
+            const deleteButton = document.getElementById('deleteButton');
         
             logoutButton.addEventListener('click', function() {
                 localStorage.clear();
@@ -73,6 +81,29 @@
                 }
             }
 
+            deleteButton.addEventListener('click', function() {
+                const confirmDelete = confirm('Você tem certeza que quer apagar este livro?');
+                if (confirmDelete) {
+                    fetch(`http://localhost:8080/livros/${livroId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erro ao tentar apagar o livro.');
+                        }
+                        alert('Livro apagado com sucesso.');
+                        window.location.href = 'http://localhost:1313/livros';
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error.message);
+                        alert(error.message);
+                    });
+                }
+            });
+            
             fetch(`http://localhost:8080/livros/${livroId}`, {
                 method: 'GET',
                 headers: {
@@ -106,7 +137,6 @@
                 console.error('Erro:', error.message);
                 alert(error.message);
             });
-            
         });
     </script>
 </body>
