@@ -27,7 +27,7 @@ public class LivroController {
 
     @GetMapping("/livros/emprestimos")
     public String empresimoLivro() {
-        return "livro/emprestimos";
+        return "livro/listaemprestimos";
     }
 
 }

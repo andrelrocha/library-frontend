@@ -40,6 +40,12 @@
                                 <a href="http://localhost:1313/users/update" class="btn btn-primary">Atualizar</a>
                             </td>
                         </tr>
+                        <tr>
+                            <th>Meus empréstimos:</th>
+                            <td>
+                                <a id="emprestimoButton" href="http://localhost:1313/livros/emprestimos" class="btn btn-success">Conferir</a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -52,6 +58,9 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            const token = localStorage.getItem('token');
+
+            const emprestimoButton = document.getElementById('emprestimoButton');
 
             const logoutButton = document.getElementById('logoutButton');
         
@@ -60,9 +69,6 @@
                 window.location.href = 'http://localhost:1313/login';
             });
 
-            const token = localStorage.getItem('token');
-
-            // Obtém o token JWT armazenado no localStorage
             fetch(`http://localhost:8080/users/${token}`, {
                 method: 'GET',
                 headers: {
