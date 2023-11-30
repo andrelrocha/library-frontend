@@ -31,6 +31,8 @@
                     </tbody>
                 </table>
                 <a href="http://localhost:1313/livros/criar" class="btn btn-primary btn-lg mt-3">Criar um livro</a>
+
+                <button id="sugestaoLivro" class="btn btn-primary btn-lg mt-3">Me sugira um Livro!</button>
             </div>
         </div>
     </div>
@@ -51,6 +53,23 @@
                 document.cookie = `livro_id=${id}; path=/`;
                 window.location.href = 'http://localhost:1313/livros/livroporid';
             }
+
+            document.getElementById('sugestaoLivro').addEventListener('click', function() {
+                fetch('http://localhost:8080/livros/sugestao', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        const idDoLivro = data.id;
+                        abrirPaginaPorId(idDoLivro);
+                    })
+                    .catch(error => {
+                        alert('Erro ao buscar sugestão de livro:', error);
+                    });
+            });
 
             fetch('http://localhost:8080/livros', {
                 method: 'GET',
