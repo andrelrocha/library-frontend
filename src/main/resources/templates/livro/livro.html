@@ -6,6 +6,7 @@
 </head>
 <body>
     <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #696D7D;">
+        <a href="http://localhost:1313/users/userid" class="btn btn-primary me-2">Meu Perfil</a>
         <a href="http://localhost:1313/livros" class="btn btn-success me-2">Ir para Livros</a>
         Biblioteca POO
         <button id="logoutButton" class="btn btn-danger ms-2">Sair</button>
@@ -49,6 +50,12 @@
                                 <button id="deleteButton" class="btn btn-danger">Excluir</button>
                             </td>
                         </tr>
+                        <tr>
+                            <th>Alugar livro:</th>
+                            <td>
+                                <button id="alugarButton" class="btn btn-success">Alugar</button> 
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -61,18 +68,12 @@
             const token = localStorage.getItem('token');
 
             const logoutButton = document.getElementById('logoutButton');
-
             const deleteButton = document.getElementById('deleteButton');
+            const alugarButton = document.getElementById('alugarButton');
         
-            logoutButton.addEventListener('click', function() {
-                localStorage.clear();
-                window.location.href = 'http://localhost:1313/login';
-            });
-
             const cookieString = document.cookie;
             const cookies = cookieString.split(';').map(cookie => cookie.trim());
             let livroId = null;
-
             for (const cookie of cookies) {
                 const [name, value] = cookie.split('=');
                 if (name === 'livro_id') {
@@ -80,6 +81,11 @@
                     break;
                 }
             }
+
+            logoutButton.addEventListener('click', function() {
+                localStorage.clear();
+                window.location.href = 'http://localhost:1313/login';
+            });
 
             deleteButton.addEventListener('click', function() {
                 const confirmDelete = confirm('Você tem certeza que quer apagar este livro?');
@@ -113,6 +119,45 @@
                         alert(error.message);
                     });
                 }
+            });
+
+            alugarButton.addEventListener('click', function() {
+                const emprestimoData = {
+                    livro_id: livroId
+                }
+
+                fetch(`http://localhost:8080/emprestimo/${token}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(emprestimoData)
+                })
+                .then(response => {
+                    console.log(response);
+                    console.log(livroId);
+                    if (!response.ok) {
+                        if (response.status === 400) {
+                            return response.text().then(errorMessage => {
+                                alert('Erro 400: ' + errorMessage);
+                                throw new Error(`Erro ${response.status}: ${errorMessage}`);
+                            });
+                        } else if (response.status === 401) {
+                            throw new Error(`Erro ${response.status}: Você não está autorizado para a operação desejada`);
+                        } else if (response.status === 403) {
+                            throw new Error(`Erro ${response.status}: Você não está autorizado para a operação desejada`);
+                        } else {
+                            throw new Error(`Erro ${response.status}: ${errorMessage}`);
+                        }
+                    }
+                    alert('Livro alugado com sucesso.');
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Erro:', error.message);
+                    alert(error.message);
+                });
             });
             
             fetch(`http://localhost:8080/livros/${livroId}`, {
