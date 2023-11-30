@@ -31,6 +31,11 @@
                 </table>
             </div>
         </div>
+        <div class="row mt-3">
+            <div class="col">
+                <button id="calcularValorTotal" class="btn btn-primary">Valor total gasto</button>
+            </div>
+        </div>
     </div>
     
     <script>
@@ -39,10 +44,29 @@
             const token = localStorage.getItem('token');
 
             const logoutButton = document.getElementById('logoutButton');
+
+            const calcularValorTotalButton = document.getElementById('calcularValorTotal');
         
             logoutButton.addEventListener('click', function() {
                 localStorage.clear();
                 window.location.href = 'http://localhost:1313/login';
+            });
+
+            calcularValorTotalButton.addEventListener('click', function () {
+                fetch(`http://localhost:8080/emprestimo/calcular/${token}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(`Valor total gasto: R$ ${data}`);
+                    })
+                    .catch(error => {
+                        console.error('Erro ao calcular valor total:', error);
+                        alert('Erro ao calcular valor total');
+                    });
             });
 
             fetch(`http://localhost:8080/emprestimo/${token}`, {
@@ -81,9 +105,11 @@
                     button.style.width = '30px';
                     button.style.height = '30px';
 
+                    /*
                     button.addEventListener('click', function() {
                         abrirPaginaPorId(livroData.id);
                     });
+                    */
                     acaoCell.appendChild(button);
                     row.appendChild(acaoCell);
                     
