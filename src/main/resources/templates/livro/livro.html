@@ -167,6 +167,10 @@
                     alert(error.message);
                 });
             });
+
+            listar_emprestimosButton.addEventListener('click', function() {
+                window.location.href = 'http://localhost:1313/livros/emprestimosdolivro';
+            });
             
             fetch(`http://localhost:8080/livros/${livroId}`, {
                 method: 'GET',
