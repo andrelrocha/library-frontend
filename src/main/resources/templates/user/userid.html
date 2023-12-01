@@ -47,7 +47,7 @@
                         <tr>
                             <th>Meus empréstimos:</th>
                             <td>
-                                <a id="emprestimoButton" href="http://localhost:1313/livros/emprestimos" class="btn btn-success">Conferir</a>
+                                <a id="emprestimoButton" href="http://localhost:1313/users/emprestimos" class="btn btn-success">Conferir</a>
                             </td>
                         </tr>
                         <tr>
@@ -70,8 +70,6 @@
         document.addEventListener("DOMContentLoaded", function() {
             const token = localStorage.getItem('token');
 
-            const emprestimoButton = document.getElementById('emprestimoButton');
-
             const logoutButton = document.getElementById('logoutButton');
 
             const addSaldoButton = document.getElementById('addSaldoButton');
@@ -80,8 +78,6 @@
                 localStorage.clear();
                 window.location.href = 'http://localhost:1313/login';
             });
-
-            //`http://localhost:8080/users/${token}`
 
             addSaldoButton.addEventListener('click', function () {
                 const valor = prompt('Digite o valor que deseja adicionar:');

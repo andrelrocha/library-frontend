@@ -26,11 +26,6 @@ public class LivroController {
     }
 
     @GetMapping("/livros/emprestimos")
-    public String empresimoLivro() {
-        return "livro/listaemprestimos";
-    }
-
-    @GetMapping("/livros/emprestimosdolivro")
     public String emprestimoLivro() {
         return "livro/listaemprestimoslivro";
     }

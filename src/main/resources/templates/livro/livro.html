@@ -143,8 +143,6 @@
                     body: JSON.stringify(emprestimoData)
                 })
                 .then(response => {
-                    console.log(response);
-                    console.log(livroId);
                     if (!response.ok) {
                         if (response.status === 400) {
                             return response.text().then(errorMessage => {
@@ -169,7 +167,7 @@
             });
 
             listar_emprestimosButton.addEventListener('click', function() {
-                window.location.href = 'http://localhost:1313/livros/emprestimosdolivro';
+                window.location.href = 'http://localhost:1313/livros/emprestimos';
             });
             
             fetch(`http://localhost:8080/livros/${livroId}`, {

@@ -5,6 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UserController {
+    @GetMapping("/users/emprestimos")
+    public String emprestimoLivro() {
+        return "user/listaemprestimos";
+    }
+
     @GetMapping("/users/create")
     public String create() {
         return "user/create";
