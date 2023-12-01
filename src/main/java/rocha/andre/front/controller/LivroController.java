@@ -30,5 +30,10 @@ public class LivroController {
         return "livro/listaemprestimos";
     }
 
+    @GetMapping("/livros/emprestimosdolivro")
+    public String emprestimoLivro() {
+        return "livro/listaemprestimoslivro";
+    }
+
 }
 

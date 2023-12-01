@@ -39,6 +39,19 @@
                             <td id="livroQuantidade"></td>
                         </tr>
                         <tr>
+                            <th>Alugar livro:</th>
+                            <td>
+                                <button id="alugarButton" class="btn btn-success">Alugar</button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Todos os empréstimos:</th>
+                            <td>
+                                <button id="listar_emprestimosButton" class="btn btn-warning">Listar</button> 
+                            </td>
+                        </tr>
+
+                        <tr>
                             <th>Atualizar informações:</th>
                             <td>
                                 <a href="http://localhost:1313/livros/update" class="btn btn-primary">Atualizar</a>
@@ -48,12 +61,6 @@
                             <th>Apagar livro:</th>
                             <td>
                                 <button id="deleteButton" class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Alugar livro:</th>
-                            <td>
-                                <button id="alugarButton" class="btn btn-success">Alugar</button> 
                             </td>
                         </tr>
                     </tbody>
@@ -70,6 +77,7 @@
             const logoutButton = document.getElementById('logoutButton');
             const deleteButton = document.getElementById('deleteButton');
             const alugarButton = document.getElementById('alugarButton');
+            const listar_emprestimosButton = document.getElementById('listar_emprestimosButton');
         
             const cookieString = document.cookie;
             const cookies = cookieString.split(';').map(cookie => cookie.trim());
