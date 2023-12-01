@@ -22,6 +22,7 @@
                             <th>ID</th>
                             <th>Id do Usuário</th>
                             <th>Data de devolução</th>
+                            <th>Retornado</th>
                         </tr>
                     </thead>
                     <tbody id="emprestimos-list">
@@ -80,10 +81,14 @@
                     const userCell = document.createElement('td');
                     userCell.innerText = emprestimoData.user_id;
                     row.appendChild(userCell);
-
+            
                     const dateCell = document.createElement('td');
                     dateCell.innerText = emprestimoData.date;
                     row.appendChild(dateCell);
+                    
+                    const retornadoCell = document.createElement('td');
+                    retornadoCell.innerText = emprestimoData.retornado ? 'Sim!' : 'Ainda não';
+                    row.appendChild(retornadoCell);
                     
                     tableBody.appendChild(row);
                 }
