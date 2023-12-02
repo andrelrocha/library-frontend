@@ -64,7 +64,11 @@
             })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Erro na requisição');
+                    if (response.status === 401 || response.status === 403) {
+                        window.location.href = 'http://localhost:1313/login';
+                    } else {
+                        throw new Error('Erro na requisição');
+                    }
                 }
                 return response.json();
             })
